@@ -1,0 +1,7 @@
+# ignore all under 'build' except 'build/conf'
+build/*
+!/build/conf/
+
+# state folders
+sstate-cache/
+downloads/
