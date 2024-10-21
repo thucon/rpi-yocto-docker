@@ -19,14 +19,14 @@ RUN apt-get update && apt-get install -y gawk wget git-core diffstat unzip \
             libgmp-dev libmpc-dev libsdl1.2-dev libssl-dev lz4 pylint \
             vim bash-completion screen zstd iproute2 iptables sudo \
             bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm \
-            nano
+            nano libncurses-dev
 
 # needed by bitbake
 RUN locale-gen en_US.UTF-8
 
 # make user sudo command password-less
-#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "${USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USER} && \
+    chmod 0440 /etc/sudoers.d/${USER}
 
 # Create a group and user
 #--disabled-password prevents prompt for a password
